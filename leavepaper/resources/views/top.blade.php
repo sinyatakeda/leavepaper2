@@ -109,7 +109,6 @@
 		</div>
 	</div>
 </div>
-
 <!-- START CONTACT -->
 <section class="section bg-light pt-5" id="contact">
 		<div class="container">
@@ -123,36 +122,41 @@
 			<div class="row mt-5">
 				<div class="col-lg-12">
 					<div class="form-kerri">
-						<form>
+						<form method="POST" action="{{ route('contact.confirm') }}">
+						@csrf
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group mt-2">
-										<input name="name" id="name" type="text" class="form-control" placeholder="お名前" required>
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="form-group mt-2">
-										<input name="email" id="email" type="email" class="form-control" placeholder="メールアドレス" required>
+										<input name="email" value="{{ old('email') }}" type="text" class="form-control" placeholder="メールアドレス" required>
+										@if ($errors->has('email'))
+        								<p class="error-message">{{ $errors->first('email') }}</p>
+    									@endif
 									</div>
 								</div>                                
 							</div>
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="form-group mt-2">
-										<input type="text" class="form-control" id="subject" placeholder="タイトル" required/>
+										<input name="title" value="{{ old('title') }}" type="text" class="form-control" placeholder="タイトル" required/>
+										@if ($errors->has('title'))
+        								<p class="error-message">{{ $errors->first('title') }}</p>
+    									@endif
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="form-group mt-2">
-										<textarea name="comments" id="comments" rows="4" class="form-control" placeholder="内容"></textarea>
+										<textarea name="body" rows="4" class="form-control" placeholder="内容">{{ old('body') }}</textarea>
+										@if ($errors->has('body'))
+        								<p class="error-message">{{ $errors->first('body') }}</p>
+    									@endif
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-12 text-right">
-									<a href="#" class="btn btn-success">送信</a>
+									<button class="nav-link" type="submit">入力内容確認</button>
 								</div>
 							</div>
 						</form>
