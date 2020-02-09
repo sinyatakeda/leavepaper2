@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body text-success">
                     <div>
-                        <p>お名前</p>
+                        <p>名前</p>
                     </div>
                     <span class="mr-2">
                         {{ $post->created_at->format('Y.m.d') }}
